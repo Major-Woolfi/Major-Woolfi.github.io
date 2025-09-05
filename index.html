@@ -136,7 +136,7 @@
 
             let totalWidth = 0;
             const cards = track.querySelectorAll('.review-card:not(.clone)');
-            cards.forEach(card => totalWidth += card.offsetWidth + 32);
+            cards.forEach(card => totalWidth += card.offsetWidth + 48);
 
             let cloneWidth = 0;
             let i = 0;
@@ -144,7 +144,7 @@
                 const clone = cards[i % cards.length].cloneNode(true);
                 clone.classList.add('clone');
                 track.appendChild(clone);
-                cloneWidth += clone.offsetWidth + 32;
+                cloneWidth += clone.offsetWidth + 48;
                 i++;
             }
             track.style.width = (totalWidth + cloneWidth) + 'px';
@@ -154,7 +154,7 @@
             pos -= speed;
             const firstCard = track.querySelector('.review-card');
             if (firstCard) {
-                const cardWidth = firstCard.offsetWidth + 32;
+                const cardWidth = firstCard.offsetWidth + 48;
                 if (-pos >= cardWidth) {
                     track.appendChild(firstCard);
                     pos += cardWidth;
@@ -194,4 +194,5 @@
     </div>
 </div>
 </body>
+
 </html>
