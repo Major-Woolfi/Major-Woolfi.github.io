@@ -6,6 +6,7 @@
     <title>Major_Woolfi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"  href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
 <img src="background.jpg" alt="bg" class="bg-blur">
@@ -13,7 +14,7 @@
 <div class="main-section fade-in">
     <div class="Woolfi">
         <img src="Woolfi.png" alt="Майор Вулфи">
-        <div><h2>Фрилансер</h2><h2>Майор Вулфи</h2></div>
+        <div><h2>Майор Вулфи</h2></div>
     </div>
     <div class="about">
         <h1>Обо мне</h1>
@@ -52,10 +53,13 @@
     *   Написание технической документации,<br>
     *   Обучение и менторство по технологиям разработки.<br>
     <br>
-    И всё это - с высоким уровнем качества и 100% гарантией!</p>
+    И всё это - с высоким уровнем качества и 100% гарантией!
+    </p>
+</div>
+<div class="reviews fade-in delay-2">
+    <h2>Отзывы заказчиков</h2>
 </div>
 <div class="reviews-section fade-in delay-2">
-    <h2>Отзывы заказчиков</h2>
     <div class="reviews-marquee" id="reviews-marquee">
         <div class="reviews-track" id="reviews-track">
             <div class="review-card">
@@ -111,64 +115,6 @@
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const fadeEls = document.querySelectorAll('.fade-in');
-        const onScroll = () => {
-            fadeEls.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight - 40) {
-                    el.style.animationPlayState = 'running';
-                }
-            });
-        };
-        onScroll();
-        window.addEventListener('scroll', onScroll);
-
-        const track = document.getElementById('reviews-track');
-        const marquee = document.getElementById('reviews-marquee');
-        let speed = 0.7; // px per frame
-        let pos = 0;
-
-        function setupMarquee() {
-            const clones = track.querySelectorAll('.review-card.clone');
-            clones.forEach(clone => clone.remove());
-
-            let totalWidth = 0;
-            const cards = track.querySelectorAll('.review-card:not(.clone)');
-            cards.forEach(card => totalWidth += card.offsetWidth + 48);
-
-            let cloneWidth = 0;
-            let i = 0;
-            while (cloneWidth < marquee.offsetWidth) {
-                const clone = cards[i % cards.length].cloneNode(true);
-                clone.classList.add('clone');
-                track.appendChild(clone);
-                cloneWidth += clone.offsetWidth + 48;
-                i++;
-            }
-            track.style.width = (totalWidth + cloneWidth) + 'px';
-        }
-
-        function animate() {
-            pos -= speed;
-            const firstCard = track.querySelector('.review-card');
-            if (firstCard) {
-                const cardWidth = firstCard.offsetWidth + 48;
-                if (-pos >= cardWidth) {
-                    track.appendChild(firstCard);
-                    pos += cardWidth;
-                }
-            }
-            track.style.transform = `translateX(${pos}px)`;
-            requestAnimationFrame(animate);
-        }
-
-        setupMarquee();
-        window.addEventListener('resize', setupMarquee);
-        requestAnimationFrame(animate);
-    });
-</script>
 <div class="contacts-section fade-in delay-3">
     <h2>Контакты</h2>
     <div class="contacts-list">
@@ -190,9 +136,7 @@
             </span>
             majorwoolfi@gmail.com
         </a>
-
     </div>
 </div>
 </body>
-
 </html>

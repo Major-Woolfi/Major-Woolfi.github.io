@@ -44,10 +44,10 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, div, span {
     transform: translateY(20px);
     animation: fadeInUp 1.1s ease forwards;
 }
-.fade-in.delay-1 { animation-delay: 0.4s; }
-.fade-in.delay-2 { animation-delay: 0.8s; }
-.fade-in.delay-3 { animation-delay: 0.12s; }
-.fade-in.delay-4 { animation-delay: 0.16s; }
+.fade-in.delay-1 { animation-delay: 0.5s; }
+.fade-in.delay-2 { animation-delay: 1.0s; }
+.fade-in.delay-3 { animation-delay: 1.5s; }
+.fade-in.delay-4 { animation-delay: 2.0s; }
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -63,22 +63,25 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, div, span {
 }
 .Woolfi {
     width: 400px;
-    min-width: 220px;
+    min-width: 200px;
     text-align: center;
     flex-shrink: 0;
 }
 .Woolfi img {
-    width: 100%;
-    max-width: 400px;
+    width: 400px;
+    min-width: 200px;
     border-radius: 50%;
-    cursor: pointer;
 }
 .about {
     flex: 5 5 500px;
     min-width: 220px;
 }
-.offers-section, .reviews-section {
+.offers-section {
     padding: 40px 5vw;
+}
+.reviews {
+    padding: 40px 5vw;
+    padding-bottom: 20px;
 }
 .reviews-section {
     padding-bottom: 20px;
@@ -104,8 +107,8 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, div, span {
 .review-card {
     background: rgba(20,20,20,0.85);
     border-radius: 24px;
+    width: 340px;
     min-width: 320px;
-    max-width: 340px;
     box-shadow: 0 4px 24px #000a;
     display: flex;
     flex-direction: column;
