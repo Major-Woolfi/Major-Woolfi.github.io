@@ -68,7 +68,7 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, div, span {
     flex-shrink: 0;
 }
 .Woolfi img {
-    width: 80%;
+    width: 100%;
     max-width: 400px;
     border-radius: 50%;
 }
@@ -243,3 +243,4 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, div, span {
     }
 
 }
+
