@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const fadeEls = document.querySelectorAll('.fade-in');
     const onScroll = () => {
         fadeEls.forEach(el => {
