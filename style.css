@@ -109,6 +109,7 @@ p {
     padding: 40px 5vw;
     padding-bottom: 20px;
     max-width: 1600px; /* Ограничение ширины */
+    margin: 0 auto; /* Центрирование */
 }
 
 .offers-section {
@@ -117,19 +118,12 @@ p {
     margin: 0 auto; /* Центрирование */
 }
 
-.reviews-section {
-    max-width: 100%;
-    min-width: 100%;
-}
-
 /* Отзывы */
-.reviews-marquee {
+.reviews-marquee,
+.reviews-section{
     position: relative;
-    max-width: 100%;
-    min-width: 100%;
     overflow: hidden;
     margin-top: 24px;
-    height: 220px;
 }
 
 .reviews-track {
@@ -138,8 +132,6 @@ p {
     gap: 32px;
     will-change: transform;
     transition: none;
-    max-width: 100%;
-    min-width: 100%;
 }
 
 .review-card {
@@ -231,17 +223,14 @@ p {
     text-decoration: none;
     font-size: 1.2em;
     gap: 14px;
-    background: rgba(0, 0, 0, 0.4);
     padding: 10px 18px;
     border-radius: 8px;
-    transition: color 0.2s, background 0.2s;
-    min-width: 220px;
+    transition: color 0.2s;
     justify-content: flex-start;
 }
 
 .contact-link:hover {
     color: #00bfa5;
-    background: rgba(0, 0, 0, 0.7);
 }
 
 .contact-icon {
