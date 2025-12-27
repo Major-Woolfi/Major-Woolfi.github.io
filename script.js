@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     onScroll();
     window.addEventListener('scroll', onScroll);
 
-    // Reviews marquee — only initialize on pages that include the marquee elements
     const track = document.getElementById('reviews-track');
     const marquee = document.getElementById('reviews-marquee');
     if (track && marquee) {
