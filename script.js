@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let cloneWidth = 0;
             let i = 0;
-            while (cloneWidth < marquee.offsetWidth * 2) {
+            while (cloneWidth < marquee.offsetWidth * 3) {
                 const clone = cards[i % cards.length].cloneNode(true);
                 clone.classList.add('clone');
                 track.appendChild(clone);
@@ -41,19 +41,38 @@ document.addEventListener('DOMContentLoaded', function () {
             track.style.width = (totalWidth + cloneWidth) + 'px';
         }
 
+        function normalizePosition() {
+            let guard = 0;
+            while (guard < 300) {
+                const firstCard = track.querySelector('.review-card');
+                if (!firstCard) break;
+                const cardWidth = firstCard.offsetWidth + 48;
+                if (-pos >= cardWidth) {
+                    track.appendChild(firstCard);
+                    pos += cardWidth;
+                    guard++;
+                    continue;
+                }
+                if (pos > 0) {
+                    const cardsAll = track.querySelectorAll('.review-card');
+                    const lastCard = cardsAll[cardsAll.length - 1];
+                    if (!lastCard) break;
+                    const lastWidth = lastCard.offsetWidth + 48;
+                    track.insertBefore(lastCard, track.firstChild);
+                    pos -= lastWidth;
+                    guard++;
+                    continue;
+                }
+                break;
+            }
+        }
+
         function animate() {
             const now = Date.now();
             if (now >= pauseUntil && !isPointerDown) {
                 pos -= speed;
             }
-            const firstCard = track.querySelector('.review-card');
-            if (firstCard) {
-                const cardWidth = firstCard.offsetWidth + 48;
-                if (-pos >= cardWidth) {
-                    track.appendChild(firstCard);
-                    pos += cardWidth;
-                }
-            }
+            if (!isPointerDown) normalizePosition();
             track.style.transform = `translateX(${pos}px)`;
             requestAnimationFrame(animate);
         }
@@ -83,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
             isPointerDown = false;
             try { marquee.releasePointerCapture(e.pointerId); } catch (err) { }
             marquee.classList.remove('dragging');
+            normalizePosition();
             pauseUntil = Date.now() + 3000;
         }
 
@@ -92,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         marquee.addEventListener('wheel', function (e) {
             const delta = e.deltaX !== 0 ? -e.deltaX : -e.deltaY;
             pos += delta;
+            normalizePosition();
             track.style.transform = `translateX(${pos}px)`;
             pauseUntil = Date.now() + 3000;
             e.preventDefault();

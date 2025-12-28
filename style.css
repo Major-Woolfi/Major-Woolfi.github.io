@@ -474,3 +474,12 @@ body {
 .reviews-marquee.dragging {
     cursor: grabbing;
 }
+
+.site-footer .buy-button {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+.site-footer .buy-button:hover {
+    color: #ffffff !important;
+}
