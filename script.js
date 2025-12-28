@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (track && marquee) {
         let speed = 0.7;
         let pos = 0;
+        let isPointerDown = false;
+        let pointerStartX = 0;
+        let pointerStartPos = 0;
+        let pauseUntil = 0;
 
         function setupMarquee() {
             const clones = track.querySelectorAll('.review-card.clone');
@@ -38,7 +42,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function animate() {
-            pos -= speed;
+            const now = Date.now();
+            if (now >= pauseUntil && !isPointerDown) {
+                pos -= speed;
+            }
             const firstCard = track.querySelector('.review-card');
             if (firstCard) {
                 const cardWidth = firstCard.offsetWidth + 48;
@@ -54,6 +61,41 @@ document.addEventListener('DOMContentLoaded', function () {
         setupMarquee();
         window.addEventListener('resize', setupMarquee);
         requestAnimationFrame(animate);
+
+        marquee.addEventListener('pointerdown', function (e) {
+            isPointerDown = true;
+            pointerStartX = e.clientX;
+            pointerStartPos = pos;
+            try { marquee.setPointerCapture(e.pointerId); } catch (err) { }
+            marquee.classList.add('dragging');
+            e.preventDefault();
+        });
+
+        marquee.addEventListener('pointermove', function (e) {
+            if (!isPointerDown) return;
+            const delta = e.clientX - pointerStartX;
+            pos = pointerStartPos + delta;
+            track.style.transform = `translateX(${pos}px)`;
+        });
+
+        function endPointer(e) {
+            if (!isPointerDown) return;
+            isPointerDown = false;
+            try { marquee.releasePointerCapture(e.pointerId); } catch (err) { }
+            marquee.classList.remove('dragging');
+            pauseUntil = Date.now() + 3000;
+        }
+
+        marquee.addEventListener('pointerup', endPointer);
+        marquee.addEventListener('pointercancel', endPointer);
+
+        marquee.addEventListener('wheel', function (e) {
+            const delta = e.deltaX !== 0 ? -e.deltaX : -e.deltaY;
+            pos += delta;
+            track.style.transform = `translateX(${pos}px)`;
+            pauseUntil = Date.now() + 3000;
+            e.preventDefault();
+        }, { passive: false });
     }
 
     const navLogo = document.getElementById('nav-logo');
