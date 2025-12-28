@@ -94,6 +94,34 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!isPointerDown) return;
             const delta = e.clientX - pointerStartX;
             pos = pointerStartPos + delta;
+
+            let guard = 0;
+            while (pos > 0 && guard < 8) {
+                const cardsAll = track.querySelectorAll('.review-card');
+                if (cardsAll.length === 0) break;
+                const lastCard = cardsAll[cardsAll.length - 1];
+                const lastWidth = lastCard.offsetWidth + 48;
+                track.insertBefore(lastCard, track.firstChild);
+                pos -= lastWidth;
+                pointerStartPos -= lastWidth;
+                guard++;
+            }
+
+            guard = 0;
+            while (guard < 8) {
+                const firstCard = track.querySelector('.review-card');
+                if (!firstCard) break;
+                const cardWidth = firstCard.offsetWidth + 48;
+                if (-pos >= cardWidth) {
+                    track.appendChild(firstCard);
+                    pos += cardWidth;
+                    pointerStartPos += cardWidth;
+                    guard++;
+                    continue;
+                }
+                break;
+            }
+
             track.style.transform = `translateX(${pos}px)`;
         });
 
