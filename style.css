@@ -467,7 +467,7 @@ body {
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
 }
 
-.buy-button:hover {
+.button:hover {
     background-color: #2ea043;
 }
 
@@ -475,11 +475,11 @@ body {
     cursor: grabbing;
 }
 
-.site-footer .buy-button {
+.site-footer .button {
     color: #ffffff !important;
     text-decoration: none !important;
 }
 
-.site-footer .buy-button:hover {
+.site-footer .button:hover {
     color: #ffffff !important;
 }
