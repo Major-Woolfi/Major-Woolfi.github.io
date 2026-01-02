@@ -41,13 +41,6 @@ body {
     gap: 16px;
 }
 
-.nav-image {
-    width: 32px;
-    height: 32px;
-    display: block;
-    object-fit: contain;
-}
-
 .side-nav {
     position: fixed;
     left: 0;
