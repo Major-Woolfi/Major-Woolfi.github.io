@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /reviewers/
-Disallow: /phantomvpn/reviewers/
-Allow: /
-
-Sitemap: https://major-woolfi.github.io/sitemap.xml
-Host: major-woolfi.github.io
